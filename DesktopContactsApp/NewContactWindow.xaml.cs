@@ -34,15 +34,13 @@ namespace DesktopContactsApp
                 Email =  emailTextBox.Text,
                 Phone = phoneTextBox.Text
             };
-            //path database
-            string databaseName = "Contacts.db";
-            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            string databasePath = System.IO.Path.Combine(folderPath, databaseName);
 
             //connection database and create table
-            SQLiteConnection connection = new SQLiteConnection(databasePath);
-            connection.CreateTable<Contact>();
-            connection.Insert(contact);
+            using (SQLiteConnection connection = new SQLiteConnection(App.databasePath)) //using disposable from sqlite to automatically stop the connetion once use it
+            {
+                connection.CreateTable<Contact>(); //create table if its not exist, but if exist ignore create table instead Insert to the exist table
+                connection.Insert(contact);
+            }
 
             // after click save the window automatically closed
             Close();
