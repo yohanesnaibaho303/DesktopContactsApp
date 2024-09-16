@@ -15,7 +15,7 @@ namespace DesktopContactsApp.Classes
         public string Email { get; set; }
         public string Phone { get; set; }
 
-        //two strings method to call an object become display strings
+        //toStrings method to call an object become display strings
         public override string ToString()
         {
             return $"{Name} - {Email} - {Phone}";
