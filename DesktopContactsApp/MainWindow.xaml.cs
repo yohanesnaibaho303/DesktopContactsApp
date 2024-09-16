@@ -39,7 +39,9 @@ namespace DesktopContactsApp
 
         void ReadDatabase()
         {
+            // defining a ListView
             List<Contact> contacts;
+
             using (SQLite.SQLiteConnection conn = new SQLite.SQLiteConnection(App.databasePath))
             {
                 conn.CreateTable<Contact>();
@@ -48,15 +50,7 @@ namespace DesktopContactsApp
 
             if(contacts != null)
             {
-                //foreach(var c in contacts)
-                //{
-                //    contactsListView.Items.Add(new ListViewItem()
-                //    {
-                //        Content = c
-                //    });
-                //}
-
-                //way better faster to add listview from contact to x:name xaml
+                //calle in x:Name , contacts data from table database
                 contactsListView.ItemsSource = contacts;
             }
         }
